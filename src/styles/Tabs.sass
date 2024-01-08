@@ -1,0 +1,33 @@
+.tabs
+    width: calc( 100% - 3rem)
+    height: 3rem
+    position: relative
+    display: flex
+
+    &__accent
+        width: 33.333333%
+        height: 2px
+        border-radius: 2px
+        position: absolute
+        background: var(--console-accent)
+        bottom: 0
+        left: 0
+        transition: .2s
+.tab
+    display: grid
+    place-items: center
+    width: 33.333333%
+    height: 100%
+    background: transparent
+    cursor: pointer
+    color: white
+    transition: .2s
+
+    &__icon
+        width: 50%
+        height: 50%
+        fill: white
+
+    &-active
+        color: var(--console-accent)
+        background: rgba(255,255,255,0.1)

@@ -1,0 +1,161 @@
+.menu
+    position: fixed
+    right: 0
+    top: 0
+    bottom: 0
+    z-index: 1000
+    font-family: monospace
+    user-select: none
+
+    &__button
+        position: absolute
+        width: 2rem
+        height: 2rem
+        border-radius: 50%
+        top: .5rem
+        right: .5rem
+        background: transparent
+        display: grid
+        place-items: center
+        cursor: pointer
+        transition: .2s
+        z-index: 3
+
+        &:hover
+            background: rgba(255,255,255,.1)
+
+        div, &::after , &::before
+            width: 1.25rem
+            height: 2px
+            border-radius: 2px
+            background: var(--console-accent)
+            transition: .2s
+
+        &:after, &:before
+            content: ""
+            position: absolute
+
+        &:before
+            transform: translateY(.4rem)
+
+        &:after
+            transform: translateY(-.4rem)
+
+    &__container
+        width: 16rem
+        height: 100%
+        backdrop-filter: blur(20px)
+        transform: translateX(100%)
+        opacity: 0
+        transition: .2s
+        background: rgba(0,0,0,.4)
+        border-left: 2px solid var(--console-accent)
+        visibility: hidden
+        position: absolute
+        right: 0
+
+        @media  screen and (max-width: 425px)
+            width: 100vw
+            border: none
+
+    &__content
+        position: relative
+        width: 100%
+        height: 100%
+        overflow: hidden
+
+    &__page
+        width: 100%
+        max-height: calc( 100% - 3rem )
+        position: absolute
+        transition: .2s
+        display: flex
+        flex-direction: column
+        align-items: center
+        font-size: .75rem
+        color: var(--console-accent)
+        overflow: auto
+
+        &::-webkit-scrollbar
+            width: 6px
+
+        &::-webkit-scrollbar-track
+            background: transparent
+
+        &::-webkit-scrollbar-thumb
+            background-color: var(--console-scroll)
+            border: 2px solid transparent
+            border-radius: 3px
+
+        input
+            appearance: none
+            outline: none
+            border: none
+
+        input[type="range"]
+            width: calc( 100% - 3rem)
+            margin: 1rem 1rem 1rem 0
+            height: .25rem
+            border-radius: .25rem
+
+    &__item
+        width: 100%
+        padding: 1rem
+
+    &__content[data-page="0"] &__page
+        &:nth-child(1)
+            transform: translateX(0)
+        &:nth-child(2)
+            transform: translateX(100%)
+        &:nth-child(3)
+            transform: translateX(200%)
+
+    &__content[data-page="1"] &__page
+        &:nth-child(1)
+            transform: translateX(-100%)
+        &:nth-child(2)
+            transform: translateX(0)
+        &:nth-child(3)
+            transform: translateX(100%)
+
+    &__content[data-page="2"] &__page
+        &:nth-child(1)
+            transform: translateX(-200%)
+        &:nth-child(2)
+            transform: translateX(-100%)
+        &:nth-child(3)
+            transform: translateX(0)
+
+    &-opened &__container
+        visibility: visible
+        opacity: 1
+        transform: translateX(0)
+
+    &-opened &__button
+
+        div
+            opacity: 0
+            transform: translateX(-100%)
+
+        &:before
+            transform: translateY(0) rotate(45deg)
+
+        &:after
+            transform: translateY(0) rotate(-45deg)
+
+    &__console
+        width: 100%
+        aspect-ratio: 16/9
+        border-radius: .25rem
+        border: 2px solid transparent
+        margin-bottom: 1rem
+        transition: .2s
+        overflow: hidden
+
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+
+        &-active
+            border-color: var(--console-accent)

@@ -1,0 +1,89 @@
+.win
+    width: 500px
+    height: 400px
+    position: fixed
+    z-index: 1000
+    top: 200px
+    left: 200px
+    box-shadow: 0 0 .5rem .5rem rgba(0, 0, 0, .2)
+    border-radius: 0.5rem
+    overflow: hidden
+
+    &-fullscreen
+        z-index: 1000
+        position: fixed
+        inset: 0
+        background: #00000044
+        backdrop-filter: blur(10px)
+
+        &__close
+            width: 2rem
+            height: 2rem
+            background: transparent
+            color: white
+            font-size: 1rem
+            margin-left: auto
+            cursor: pointer
+            transition: .2s
+            position: absolute
+            right: 0
+            top: 0
+            z-index: 10000
+
+            &:hover
+                background: red
+
+        &__content
+            position: relative
+            width: 100%
+            height: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+
+    &__border
+        position: absolute
+        inset: 0
+        cursor: grab
+        background: transparent
+
+    &__topbar
+        right: 0
+        top: 0
+        left: 0
+        height: 1.5rem
+        position: relative
+        background: #000
+        display: flex
+        align-items: center
+        justify-content: center
+
+        p
+            font-family: Arial, Helvetica, sans-serif
+            position: absolute
+            left: auto
+            right: auto
+            color: white
+            pointer-events: none
+            user-select: none
+
+    &__close
+        width: 2rem
+        height: 1.5rem
+        background: transparent
+        color: white
+        font-size: 1rem
+        margin-left: auto
+        cursor: pointer
+        transition: .2s
+
+        &:hover
+            background: red
+
+    &__content
+        position: relative
+        width: 100%
+        height: calc( 100% - 1.5rem)
+        cursor: default
+        background: white
+        z-index: 10

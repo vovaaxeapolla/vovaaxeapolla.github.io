@@ -1,0 +1,61 @@
+.grid
+    width: 80vmin
+    height: 80vmin
+    position: relative
+    display: grid
+    grid-template-columns: repeat(var(--size), var(--cell-size))
+    grid-template-rows: repeat(var(--size), var(--cell-size))
+    gap: var(--cell-gap)
+
+.cell
+    background: #eee
+    border-radius: 1vmin
+
+.tile
+    position: absolute
+    top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)))
+    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)))
+    width: var(--cell-size)
+    height: var(--cell-size)
+    border-radius: 1vmin
+    animation: show .2s, move 1s infinite
+    transition: .2s
+    scale: 0.8
+
+@keyframes show
+    0%
+        opacity: 0.5
+        transform: scale(0)
+
+@keyframes hide
+    100%
+        opacity: 0
+        transform: scale(0)
+
+@keyframes move
+    0%
+        transform: scale(1)
+    25%
+        transform: scale(1.1)
+    50%
+        transform: scale(.9)
+    75%
+        transform: scale(1.1)
+    100%
+        transform: scale(1)
+
+.snake
+    background: #91ff62
+    box-shadow: 0 0 8px 0 #91ff62
+
+.fruit
+    background: #ff485a
+    box-shadow: 0 0 8px 0 #ff485a
+
+.tail
+    background: #445c3b
+    box-shadow: 0 0 8px 0 #86ff52
+    scale: .7
+
+.hide
+    animation: hide .1s
