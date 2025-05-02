@@ -1,15 +1,16 @@
-import React from "react";
-import styles from '@styles/Line.module.sass';
-import { LineType } from '@src/types';
-import { observer } from "mobx-react-lite";
+import React from 'react';
+import { observer } from 'mobx-react-lite';
 
-interface LineProps {
+import { LineType } from '@src/types';
+import styles from '@styles/Line.module.sass';
+
+interface ILineProps {
     type: LineType,
     children: React.ReactNode
     className: string
 }
 
-export const Line = observer(({ type, children, className = '' }: LineProps) => {
+export const Line = observer(({ type, children, className = '' }: ILineProps) => {
     function handler() {
         switch (type) {
             case LineType.TEXT:
@@ -17,7 +18,7 @@ export const Line = observer(({ type, children, className = '' }: LineProps) => 
             case LineType.BREAK:
                 return (
                     <div className={styles.break + ' ' + className}>
-                        ---{children ? " " : ""}{children}{children ? " " : ""}{"".padEnd(512, '-')}
+                        ---{children ? ' ' : ''}{children}{children ? ' ' : ''}{''.padEnd(512, '-')}
                     </div>);
             case LineType.SPACE:
                 return '';
@@ -34,4 +35,4 @@ export const Line = observer(({ type, children, className = '' }: LineProps) => 
             {handler()}
         </pre>
     );
-})
+});

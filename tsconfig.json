@@ -55,6 +55,12 @@
       ],
       "@console": [
         "src/console/index"
+      ],
+      "@images/*": [
+        "src/images/*"
+      ],
+      "@images": [
+        "src/images/index"
       ]
     }
   }

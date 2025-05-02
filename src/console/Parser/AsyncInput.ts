@@ -1,4 +1,4 @@
-import Emitter from '@console/Parser/Emitter';
+import Emitter from '@console/parser/Emitter';
 
 export default function asyncInput<T>(): Promise<T> {
   return new Promise((resolve) => {

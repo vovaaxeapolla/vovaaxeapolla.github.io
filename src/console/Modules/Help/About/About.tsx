@@ -1,5 +1,5 @@
 import styles from '@console/Modules/Help/About/About.module.sass';
-import consoleDay from '../../../../images/console-day.jpg';
+import consoleDay from '@images/console-day.jpg';
 
 export const About = () => {
   return (

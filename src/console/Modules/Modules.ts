@@ -13,7 +13,7 @@ export interface ICommand {
 }
 
 export interface IFunction {
-  fn: ({ }: ICommand) => Promise<LineData | LineData[] | void>
+  fn: (command: ICommand) => Promise<LineData | LineData[] | void>
   description: string,
   example: string,
   isExecutable: boolean
