@@ -1,5 +1,7 @@
-type callback = {
-  callback: Function
+type Callback<T> = (...args: T[]) => void;
+
+type CallbackWithOptions<T> = {
+  callback: Callback<T>
   options: options
 }
 
@@ -8,34 +10,34 @@ type options = {
 }
 
 class Emitter {
-  private readonly eventStore = new Map<string, callback[]>();
+  private readonly eventStore = new Map<string, Array<CallbackWithOptions<unknown>>>();
 
-  public sub(event: string, callback: Function, options = {} as options) {
+  public sub<T = unknown>(event: string, callback: Callback<T>, options = {} as options) {
     const arr = this.eventStore.get(event);
 
     if (arr && Array.isArray(arr)) {
-      const callbackList: callback[] = arr;
+      const callbackList: Array<CallbackWithOptions<unknown>> = arr;
 
-      callbackList.push({ callback, options });
+      callbackList.push({ callback: callback as Callback<unknown>, options });
       this.eventStore.set(event, callbackList);
-    } else { this.eventStore.set(event, [{ callback, options }]); }
+    } else { this.eventStore.set(event, [{ callback: callback as Callback<unknown>, options }]); }
   }
 
-  public unsub(event: string, callback: Function) {
+  public unsub<T = unknown>(event: string, callback: Callback<T>) {
     const arr = this.eventStore.get(event);
 
     if (arr && Array.isArray(arr)) {
-      const callbackList = arr.filter((e: callback) => e.callback !== callback);
+      const callbackList = arr.filter((e: CallbackWithOptions<unknown>) => e.callback !== callback);
 
       this.eventStore.set(event, callbackList);
     }
   }
 
-  public emit(event: string, args: any[]) {
+  public emit<T = unknown>(event: string, args: T[]) {
     const callbackList = this.eventStore.get(event);
 
     if (Array.isArray(callbackList)) {
-      callbackList.forEach((e: callback) => {
+      callbackList.forEach((e: CallbackWithOptions<unknown>) => {
         e.callback(...args);
 
         if (e.options.once) { this.unsub(event, e.callback); }

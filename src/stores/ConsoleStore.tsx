@@ -2,8 +2,8 @@ import { makeAutoObservable } from 'mobx';
 import { RefObject } from 'react';
 
 import LineData from '@console/Line/LineData';
-import CLIParser from '@console/Parser/CLIParser';
-import Emitter from '@console/Parser/Emitter';
+import CLIParser from '@console/parser/CLIParser';
+import Emitter from '@console/parser/Emitter';
 import { loadingAnim } from '@src/functions';
 import { LinesStore } from '@src/stores';
 import { LineType } from '@src/types';
@@ -13,7 +13,7 @@ export class ConsoleStore {
   version = 'Version 14.01.2023';
   history: { previous: string[], current: number } = { previous: [], current: -1 };
   inputLine: RefObject<HTMLInputElement>;
-  inputState: any;
+  inputState: unknown;
   inputType: 'text' | 'password' = 'text';
   lastCommand = '';
   isBusy = false;

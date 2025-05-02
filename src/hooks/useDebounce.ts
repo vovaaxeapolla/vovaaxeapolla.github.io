@@ -1,13 +1,14 @@
-import { debounce } from "@src/functions";
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-export default function useDebounce<A extends any[], R = void>(
-    fn: (args: A) => R,
-    ms: number
+import { debounce } from '@src/functions';
+
+export default function useDebounce<A extends unknown[], R = void>(
+  fn: (args: A) => R,
+  ms: number
 ): ((args: A) => Promise<R>) {
-    const [debouncedFun, teardown] = debounce<A, R>(fn, ms);
+  const [debouncedFun, teardown] = debounce<A, R>(fn, ms);
 
-    useEffect(() => () => teardown(), []);
+  useEffect(() => () => teardown(), []);
 
-    return debouncedFun;
-};
+  return debouncedFun;
+}

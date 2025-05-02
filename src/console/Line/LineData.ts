@@ -6,9 +6,9 @@ import { LineType } from '@src/types';
 export default class LineData {
   public type: LineType;
   public children: string | JSX.Element | undefined;
-  public props: any;
+  public props: unknown;
 
-  constructor(type: LineType, children?: string | JSX.Element, props?: any) {
+  constructor(type: LineType, children?: string | JSX.Element, props?: unknown) {
     makeAutoObservable(this);
     this.children = children;
     this.type = type;
@@ -16,7 +16,11 @@ export default class LineData {
   }
 
   public add(value: string) {
-    if (typeof this.children === 'string') { this.children += value; } else { this.children = <>{this.children}{value}</>; }
+    if (typeof this.children === 'string') {
+      this.children += value;
+    } else {
+      this.children = React.createElement(React.Fragment, null, this.children, value);
+    }
   }
 
   public toString() {
@@ -44,13 +48,13 @@ export default class LineData {
       return [new LineData(LineType.ERROR, 'Передан не jsx')];
     }
 
-    const lines: LineData[] = tsxArray.map((element: JSX.Element  ) => {
+    const lines: LineData[] = tsxArray.map((element: JSX.Element) => {
       switch (element.type) {
         case 'br':
           return new LineData(LineType.SPACE);
 
         case 'span':
-          return new LineData(LineType.TEXT, <span className={element.props.className}>{element.props.children}</span>);
+          return new LineData(LineType.TEXT, React.createElement('span', { className: element.props.className }, element.props.children));
 
         case 'break':
           return new LineData(LineType.BREAK, element.props.children, element.props);

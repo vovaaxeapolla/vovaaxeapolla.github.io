@@ -3,8 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import { useLocation } from 'react-router';
 
 import { ConsoleInput, ConsoleScreen } from '@components';
-import { TextCollection } from '@console/DefaultTexts/TextCollection';
 import LineData from '@console/Line/LineData';
+import { TextCollection } from '@src/console/constants/TextCollection';
 import { loadingAnim } from '@src/functions';
 import { LinesStore, ConsoleStore } from '@src/stores';
 

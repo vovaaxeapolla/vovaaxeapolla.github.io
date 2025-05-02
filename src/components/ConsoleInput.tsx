@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useState, useEffect } from 'react';
 
 import { Hints } from '@components';
-import CLIFunctions from '@console/Parser/CLIFunctions';
+import CLIFunctions from '@src/console/parser/CLIFunctions';
 import { ConsoleStore } from '@src/stores';
 
 interface IConsoleInputProps {
@@ -14,6 +14,7 @@ interface IConsoleInputProps {
 
 export const ConsoleInput: React.FC<IConsoleInputProps> = observer(({ consoleRef, inputRef, consoleStore, type }) => {
   const [hints, setHints] = useState<string[]>([]);
+  const [selectedHintIndex, setSelectedHintIndex] = useState(-1);
 
   const [inputValue, setInputValue] = useState('');
 
@@ -25,6 +26,7 @@ export const ConsoleInput: React.FC<IConsoleInputProps> = observer(({ consoleRef
     for (const i in CLIFunctions) { if (i.startsWith(inputValue) && inputValue !== '') matches.push(i); }
 
     setHints(matches);
+    setSelectedHintIndex(-1);
   }, [inputValue]);
 
   const KeyboardHandler = (event: React.ChangeEvent<HTMLInputElement> & React.KeyboardEvent<HTMLInputElement>) => {
@@ -34,6 +36,18 @@ export const ConsoleInput: React.FC<IConsoleInputProps> = observer(({ consoleRef
       event.target.blur();
       event.target.focus();
       setHints([]);
+      setSelectedHintIndex(-1);
+    }
+
+    if (event.key === 'Tab') {
+      event.preventDefault();
+
+      if (hints.length > 0) {
+        const newIndex = (selectedHintIndex + 1) % hints.length;
+
+        setSelectedHintIndex(newIndex);
+        setInputValue(hints[newIndex]);
+      }
     }
 
     if (event.key === 'ArrowDown') {
@@ -69,6 +83,7 @@ export const ConsoleInput: React.FC<IConsoleInputProps> = observer(({ consoleRef
             consoleRef={consoleRef}
             input={setInputValue}
             consoleStore={consoleStore}
+            selectedIndex={selectedHintIndex}
           />
         }
         <input

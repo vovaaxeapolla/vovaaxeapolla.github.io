@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
 import { Tabs } from '@components';
+import { consoleDay, consoleDefault, consoleNight } from '@images';
 
-import consoleDay from '../images/console-day.jpg';
-import consoleDefault from '../images/console-default.jpg';
-import consoleNight from '../images/console-night.jpg';
 import '@styles/Menu.sass';
 
 export const Menu = () => {

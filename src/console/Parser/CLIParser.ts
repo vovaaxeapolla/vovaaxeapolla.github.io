@@ -1,8 +1,8 @@
 import LineData from '@console/Line/LineData';
 import { IFunction } from '@console/Modules/Modules';
-import CLIFunctions from '@console/Parser/CLIFunctions';
-import Token from '@console/Parser/Token/Token';
-import TokenType from '@console/Parser/Token/TokenType';
+import CLIFunctions from '@console/parser/CLIFunctions';
+import Token from '@console/parser/token/Token';
+import TokenType from '@console/parser/token/TokenType';
 import { ConsoleStore } from '@src/stores';
 import { LineType } from '@src/types';
 
@@ -94,8 +94,12 @@ export default class CLIParser {
           const result = await fns[i][1].fn({ consoleStore: this.consoleStore, args, texts });
 
           return result;
-        } catch (e) {
-          console.log(e);
+        } catch (e: unknown) {
+          if (e instanceof Error) {
+            return new LineData(LineType.ERROR, e.message);
+          }
+
+          return new LineData(LineType.ERROR, 'An unknown error occurred');
         }
       }
     }
