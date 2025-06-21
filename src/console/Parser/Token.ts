@@ -1,5 +1,4 @@
-
-export  class TokenType {
+export class TokenType {
   public name: string;
   public regexp: RegExp | string;
   constructor(name: string, regexp: RegExp | string) {
@@ -8,11 +7,11 @@ export  class TokenType {
   }
 }
 
-export  class Token {
-    public type: TokenType;
-    public text: string;
-    constructor(type: TokenType, text: string) {
-      this.type = type;
-      this.text = text;
-    }
+export class Token {
+  public type: TokenType;
+  public text: string;
+  constructor(type: TokenType, text: string) {
+    this.type = type;
+    this.text = text;
+  }
 }
