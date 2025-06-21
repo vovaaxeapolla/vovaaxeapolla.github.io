@@ -2,7 +2,7 @@ export function debounce<A extends unknown[], R = void>(
   fn: (args: A) => R,
   ms: number
 ): [(args: A) => Promise<R>, () => void] {
-  let timer: number;
+  let timer: NodeJS.Timeout;
 
   const debouncedFunc = (args: A): Promise<R> => new Promise((resolve) => {
     if (timer) {

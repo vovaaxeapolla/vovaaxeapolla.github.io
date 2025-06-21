@@ -5,24 +5,14 @@ import MathParser from './MathParser';
 import LinkedList from './LinkedList';
 
 const CMDFunctions: IModule = {
-  settings: {
-    fn: async () => {
-      const output: string[] = [];
-
-      return new LineData('text', 'not rea');
-    },
-    description: 'Калькулятор',
-    example: 'calc "1+2*3/4^5sqrt(6)"',
-    isExecutable: false,
-  },
   trie: {
     fn: async () => {
       const output: string[] = [];
 
-      return new LineData('text', output);
+      return new LineData('text', 'Not implemented');
     },
-    description: 'Калькулятор',
-    example: 'calc "1+2*3/4^5sqrt(6)"',
+    description: 'Not implemented',
+    example: 'Not implemented',
     isExecutable: false,
   },
   whoami: {

@@ -12,7 +12,7 @@ export const ConsoleScreen = memo(
           lines.map((line, index) => {
             if (line !== undefined) {
               return (
-                <Line type={line.type} key={index} {...line.props}>
+                <Line type={line.type} key={index} {...line.props as object}>
                   {line.children}
                 </Line>
               );

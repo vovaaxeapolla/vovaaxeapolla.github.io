@@ -54,7 +54,7 @@ export default class LineData {
         case 'span':
           return new LineData('text', React.createElement('span', { className: element.props.className }, element.props.children));
 
-        case 'break':
+        case 'Break':
           return new LineData('break', element.props.children, element.props);
 
         case 'Suspense':

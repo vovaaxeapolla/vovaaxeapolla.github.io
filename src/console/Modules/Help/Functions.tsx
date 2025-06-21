@@ -9,48 +9,49 @@ const help: IModule = {
         LineData.ParseLines(
           <>
             <br></br>
-            <span className="dyer-additional-gradient-1">┬ ┬┌─┐┬  ┌─┐ ┌─┐</span>
-            <span className="dyer-additional-gradient-2">├─┤├┤ │  ├─┘  ┌┘</span>
-            <span className="dyer-additional-gradient-3">┴ ┴└─┘┴─┘┴    o </span>
+            <span className="dyer-additional-gradient-1">┬ ┬┌─┐┬  ┌─┐┌─┐</span>
+            <span className="dyer-additional-gradient-2">├─┤├┤ │  ├─┘ ┌┘</span>
+            <span className="dyer-additional-gradient-3">┴ ┴└─┘┴─┘┴   o </span>
             <br></br>
           </>
         ),
       ];
 
-      for (const i in Modules) {
-        const fns = Object.entries(Modules[i]);
-
+      Object.entries(Modules).forEach(([moduleName, module]) => {
         output.push(
           LineData.ParseLines(
             <>
-              <break className="dyer-accent">{i.toUpperCase()}</break>
+              <span className="dyer-accent">{moduleName.toUpperCase()}</span>
               <br />
             </>
           )
         );
-        output.push(
-          ...fns.map((f) => {
-            const dots = '.'.repeat(20 - f[0].length);
 
-            return LineData.ParseLines(
+        Object.entries(module).forEach(([fnName, fnData]) => {
+          const dots = '.'.repeat(20 - fnName.length);
+
+          output.push(
+            LineData.ParseLines(
               <>
                 <span>
-                  <span className="dyer-success">{f[0]}</span>
+                  <span className="dyer-success">{fnName}</span>
                   <span className="dyer-utility">{dots}</span>
-                  {f[1].description}
+                  {fnData.description}
                   <span
                     className="dyer-utility"
-                    onClick={() => consoleStore.setInputValue(f[1].example)}
+                    onClick={() => consoleStore.setInputValue(fnData.example)}
+                    style={{ cursor: 'pointer' }}
                   >
-                    {' '}
-                    | {f[1].example}
+                    {' | '}
+                    {fnData.example}
                   </span>
                 </span>
                 <br />
               </>
-            );
-          })
-        );
+            )
+          );
+        });
+
         output.push(
           LineData.ParseLines(
             <>
@@ -58,7 +59,7 @@ const help: IModule = {
             </>
           )
         );
-      }
+      });
 
       return output.flat();
     },

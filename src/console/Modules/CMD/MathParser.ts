@@ -1,5 +1,4 @@
-import Token from "../../parser/token/Token";
-import TokenType from "../../parser/token/TokenType";
+import { Token, TokenType } from "@console/parser/Token";
 
 export default class MathParser {
     pointer: number = 0;
