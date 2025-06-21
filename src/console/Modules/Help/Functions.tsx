@@ -36,10 +36,10 @@ const help: IModule = {
                   <span className="dyer-success">{fnName}</span>
                   <span className="dyer-utility">{dots}</span>
                   {fnData.description}
-                  <span className="dyer-utility" style={{ cursor: 'pointer' }}>
+                  {/* <span className="dyer-utility" style={{ cursor: 'pointer' }}>
                     {' | '}
                     {fnData.example}
-                  </span>
+                  </span> */}
                 </span>
                 <br />
               </>
