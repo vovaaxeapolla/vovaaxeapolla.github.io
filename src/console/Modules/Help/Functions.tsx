@@ -1,18 +1,8 @@
 import LineData from '@console/Line/LineData';
-import { About } from '@console/Modules/Help/About/About';
 import Modules, { IModule } from '@console/Modules/Modules';
-import { winsStore } from '@src/App';
 import { ConsoleStore } from '@src/stores';
 
 const help: IModule = {
-  about: {
-    fn: () => {
-      return winsStore.setWindow(<About />, 'fullscreen');
-    },
-    description: 'О проекте',
-    example: 'about',
-    isExecutable: true,
-  },
   help: {
     fn: ({ consoleStore }: { consoleStore: ConsoleStore }) => {
       const output = [
@@ -33,28 +23,34 @@ const help: IModule = {
         output.push(
           LineData.ParseLines(
             <>
-              <break className="dyer-accent">
-                {i.toUpperCase()}
-              </break>
+              <break className="dyer-accent">{i.toUpperCase()}</break>
               <br />
             </>
           )
         );
-        output.push(...fns.map((f) => {
-          const dots = '.'.repeat(20 - f[0].length);
+        output.push(
+          ...fns.map((f) => {
+            const dots = '.'.repeat(20 - f[0].length);
 
-          return LineData.ParseLines(
-            <>
-              <span>
-                <span className="dyer-success">{f[0]}</span>
-                <span className="dyer-utility">{dots}</span>
-                {f[1].description}
-                <span className="dyer-utility" onClick={() => consoleStore.setInputValue(f[1].example)}> | {f[1].example}</span>
-              </span>
-              <br />
-            </>
-          );
-        }));
+            return LineData.ParseLines(
+              <>
+                <span>
+                  <span className="dyer-success">{f[0]}</span>
+                  <span className="dyer-utility">{dots}</span>
+                  {f[1].description}
+                  <span
+                    className="dyer-utility"
+                    onClick={() => consoleStore.setInputValue(f[1].example)}
+                  >
+                    {' '}
+                    | {f[1].example}
+                  </span>
+                </span>
+                <br />
+              </>
+            );
+          })
+        );
         output.push(
           LineData.ParseLines(
             <>

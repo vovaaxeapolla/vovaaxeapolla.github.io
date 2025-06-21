@@ -6,24 +6,37 @@ import CLIFunctions from '@src/console/parser/CLIFunctions';
 import { ConsoleStore } from '@src/stores';
 
 interface IHintsProps {
-    hints: string[];
-    inputRef: React.RefObject<HTMLInputElement>;
-    consoleRef: React.RefObject<HTMLDivElement>;
-    input: (value: string) => void;
-    consoleStore: ConsoleStore;
-    selectedIndex: number;
+  hints: string[];
+  inputRef: React.RefObject<HTMLInputElement>;
+  consoleRef: React.RefObject<HTMLDivElement>;
+  input: (value: string) => void;
+  consoleStore: ConsoleStore;
+  selectedIndex: number;
 }
 
-export const Hints: React.FC<IHintsProps> = ({ hints, inputRef, consoleRef, input, consoleStore, selectedIndex }) => {
+export const Hints: React.FC<IHintsProps> = ({
+  hints,
+  inputRef,
+  consoleRef,
+  input,
+  consoleStore,
+  selectedIndex,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
   const [pos, setPos] = useState(false);
 
   useEffect(() => {
     if (ref.current && inputRef.current && consoleRef.current) {
       const height = ref.current.getBoundingClientRect().height;
-      const bottom = inputRef.current.getBoundingClientRect().bottom - consoleRef.current.getBoundingClientRect().top;
+      const bottom =
+        inputRef.current.getBoundingClientRect().bottom -
+        consoleRef.current.getBoundingClientRect().top;
 
-      if (bottom - height <= 0) { setPos(true); } else { setPos(false); }
+      if (bottom - height <= 0) {
+        setPos(true);
+      } else {
+        setPos(false);
+      }
     }
   }, [hints]);
 
@@ -46,20 +59,27 @@ export const Hints: React.FC<IHintsProps> = ({ hints, inputRef, consoleRef, inpu
 
   return (
     <>
-      {
-        hints.length > 0 &&
-                <div className={classNames('console__hints', { 'console__hints-top': !pos, 'console__hints-bottom': pos })} ref={ref}>
-                  {hints.slice(0, 5).map((h, index) => (
-                    <button
-                      key={h}
-                      className={classNames('console__hints__item', { 'console__hints__item-selected': index === selectedIndex })}
-                      onClick={clickHandler}
-                    >
-                      {h}
-                    </button>
-                  ))}
-                </div>
-      }
+      {hints.length > 0 && (
+        <div
+          className={classNames('console__hints', {
+            'console__hints-top': !pos,
+            'console__hints-bottom': pos,
+          })}
+          ref={ref}
+        >
+          {hints.slice(0, 5).map((h, index) => (
+            <button
+              key={h}
+              className={classNames('console__hints__item', {
+                'console__hints__item-selected': index === selectedIndex,
+              })}
+              onClick={clickHandler}
+            >
+              {h}
+            </button>
+          ))}
+        </div>
+      )}
     </>
   );
 };

@@ -1,15 +1,13 @@
 import LineData from '@console/Line/LineData';
 import { ConsoleStore } from '@src/stores';
 
-import AI from './AI/Functions';
 import CMD from './CMD/Functions';
-import Games from './Games/Functions';
 import Help from './Help/Functions';
 
 export interface ICommand {
   consoleStore: ConsoleStore
   args: string[]
-  texts: string[]
+  flags: Record<string, string | boolean>
 }
 
 export interface IFunction {
@@ -23,6 +21,6 @@ export interface IModule {
   [key: string]: IFunction
 }
 
-const Modules = { Help, CMD, Games, AI };
+const Modules = { Help, CMD };
 
 export default Modules;

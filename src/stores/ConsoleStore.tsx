@@ -3,20 +3,21 @@ import { RefObject } from 'react';
 
 import LineData from '@console/Line/LineData';
 import CLIParser from '@console/parser/CLIParser';
-import Emitter from '@console/parser/Emitter';
-import { loadingAnim } from '@src/functions';
+import { loadingAnim } from '@src/utils';
 import { LinesStore } from '@src/stores';
-import { LineType } from '@src/types';
 
 export class ConsoleStore {
   linesStore: LinesStore;
-  version = 'Version 14.01.2023';
-  history: { previous: string[], current: number } = { previous: [], current: -1 };
+  history: { previous: string[]; current: number } = {
+    previous: [],
+    current: -1,
+  };
   inputLine: RefObject<HTMLInputElement>;
   inputState: unknown;
-  inputType: 'text' | 'password' = 'text';
+  inputType: 'text' = 'text';
   lastCommand = '';
-  isBusy = false;
+  currentDirectory = '/';
+  user = 'root'
 
   constructor(linesStore: LinesStore, inputLine: RefObject<HTMLInputElement>) {
     makeAutoObservable(this);
@@ -33,7 +34,9 @@ export class ConsoleStore {
 
       if (p) {
         if (Array.isArray(p)) {
-          for (const i of p) { newLines.push(i); }
+          for (const i of p) {
+            newLines.push(i);
+          }
         } else {
           newLines.push(p);
         }
@@ -50,24 +53,26 @@ export class ConsoleStore {
   }
 
   doCommand(value: string, animated?: boolean) {
-    if (this.isBusy) {
-      Emitter.emit('input', [value]);
-    } else {
-      this.linesStore.writeln(new LineData(LineType.TEXT, <><span>{'Entered -> '}</span>{value}</>));
+    this.linesStore.writeln(
+      new LineData(
+        'text',
+        (
+          <>
+            <span>{'Entered -> '}</span>
+            {value}
+          </>
+        )
+      )
+    );
 
-      if (this.inputType === 'password') {
-        this.linesStore.writeln(new LineData(LineType.TEXT, '*'.repeat(value.length)));
-      } else {
-        this.setHistory(
-          [...this.history.previous, value],
-          this.history.previous.length + 1
-        );
-      }
+    this.setHistory(
+      [...this.history.previous, value],
+      this.history.previous.length + 1
+    );
 
-      if (!(this.inputType === 'password')) { window.history.replaceState(null, 'New Page Title', `/${value}`); }
+    window.history.replaceState(null, 'New Page Title', `/${value}`);
 
-      this.do(value, animated);
-    }
+    this.do(value, animated);
   }
 
   setHistory(previous: string[], current: number) {
