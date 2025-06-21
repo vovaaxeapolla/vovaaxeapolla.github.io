@@ -64,10 +64,10 @@ const CMDFunctions: IModule = {
     isExecutable: false,
   },
   test: {
-    fn: async ({ args }) => {
+    fn: async () => {
       const list = LinkedList.fromArray([1, 2, 3, 4, 5]);
 
-      return new LineData('text', list.toString());
+      return new LineData('text', list?.toString());
     },
     description: 'test',
     example: 'test',

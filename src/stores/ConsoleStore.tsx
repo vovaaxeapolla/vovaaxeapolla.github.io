@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { RefObject } from 'react';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 
 import LineData from '@console/Line/LineData';
 import CLIParser from '@console/parser/CLIParser';
@@ -13,11 +13,11 @@ export class ConsoleStore {
     current: -1,
   };
   inputLine: RefObject<HTMLInputElement>;
-  inputState: unknown;
+  inputState: [string, Dispatch<SetStateAction<string>>] | null = null;
   inputType: 'text' = 'text';
   lastCommand = '';
   currentDirectory = '/';
-  user = 'root'
+  user = 'root';
 
   constructor(linesStore: LinesStore, inputLine: RefObject<HTMLInputElement>) {
     makeAutoObservable(this);

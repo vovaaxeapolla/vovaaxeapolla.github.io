@@ -1,7 +1,7 @@
 export interface Token {
     value: string;
     type: 'RAW' | 'SINGLE_QUOTED' | 'DOUBLE_QUOTED' | 'ESCAPED';
-    quoteChar?: "'" | '"';
+    quoteChar: "'" | '"' | null;
     startPos: number;
     endPos: number;
     wasEscaped: boolean;
