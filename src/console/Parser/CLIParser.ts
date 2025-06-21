@@ -1,10 +1,16 @@
 import LineData from '@console/Line/LineData';
 import { IFunction } from '@console/Modules/Modules';
-import CLIFunctions from './CLIFunctions';
 import { ConsoleStore } from '@src/stores';
 import TerminalParser, { Token } from './TerminalParser';
 
-export default class CLIParser {
+import Modules from '@console/Modules/Modules';
+
+export const CLIFunctions = {
+  ...Modules.Help,
+  ...Modules.CMD,
+};
+
+export class CLIParser {
   private readonly consoleStore: ConsoleStore;
 
   constructor(consoleStore: ConsoleStore) {
