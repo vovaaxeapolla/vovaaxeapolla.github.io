@@ -2,7 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import { Dispatch, RefObject, SetStateAction } from 'react';
 
 import LineData from '@console/Line/LineData';
-import CLIParser from '../console/parser/CLIParser';
+import { CLIParser } from '../console/parser/CLIParser';
 import { loadingAnim } from '@src/utils';
 import { LinesStore } from '@src/stores';
 

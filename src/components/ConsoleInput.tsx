@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useState, useEffect } from 'react';
 
 import { Hints } from '@components';
-import CLIFunctions from '@console/parser/CLIFunctions';
+import { CLIFunctions } from '@console/parser/CLIParser';
 import { ConsoleStore } from '@src/stores';
 
 interface IConsoleInputProps {
