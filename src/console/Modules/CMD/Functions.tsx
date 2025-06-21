@@ -47,22 +47,6 @@ const CMDFunctions: IModule = {
     example: 'calc "1+2*3/4^5sqrt(6)"',
     isExecutable: false,
   },
-  clear: {
-    fn: async ({ consoleStore }: ICommand) => {
-      consoleStore.linesStore.clear();
-    },
-    description: 'Очищает консоль',
-    example: 'clear',
-    isExecutable: true,
-  },
-  wipe: {
-    fn: async ({ consoleStore }: ICommand) => {
-      consoleStore.setHistory([], -1);
-    },
-    description: 'Очищает историю команд',
-    example: 'wipe',
-    isExecutable: false,
-  },
   test: {
     fn: async () => {
       const list = LinkedList.fromArray([1, 2, 3, 4, 5]);

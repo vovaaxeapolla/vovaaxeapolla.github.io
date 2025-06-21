@@ -51,7 +51,6 @@ export class CLIParser {
         try {
           this.consoleStore.lastCommand = command;
           const result = await fnObj.fn({
-            consoleStore: this.consoleStore,
             args,
             flags,
           });
