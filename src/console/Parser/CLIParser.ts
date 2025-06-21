@@ -1,6 +1,6 @@
 import LineData from '@console/Line/LineData';
 import { IFunction } from '@console/Modules/Modules';
-import CLIFunctions from '@console/parser/CLIFunctions';
+import CLIFunctions from './CLIFunctions';
 import { ConsoleStore } from '@src/stores';
 import TerminalParser, { Token } from './TerminalParser';
 
