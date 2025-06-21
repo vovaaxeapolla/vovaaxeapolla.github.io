@@ -9,8 +9,7 @@
         text-decoration: none
 
 .console
-    overflow-x: hidden
-    overflow-y: scroll
+    overflow: hidden
     position: fixed
     inset: 0
     color: var(--console-text)
@@ -19,24 +18,35 @@
     font-family: monospace
     padding: var(--console-padding)
 
-    &::-webkit-scrollbar
-        width: 6px
-
-    &::-webkit-scrollbar-track
-        background: transparent
-
-    &::-webkit-scrollbar-thumb
-        background-color: var(--console-scroll)
-        border: 2px solid transparent
-        border-radius: 3px
+    &__container
+        height: calc( 100% - 2rem )
 
     &__screen
+        padding: .5rem
+        border-radius: .5rem
+        height: 100%
+        overflow-y: scroll
+        background: var(--console-screen)
         width: 100%
+
+        &::-webkit-scrollbar
+            width: 6px
+
+        &::-webkit-scrollbar-track
+            background: transparent
+
+        &::-webkit-scrollbar-thumb
+            background-color: var(--console-scroll)
+            border: 2px solid transparent
+            border-radius: 3px
 
     &__inputLine
         width: 100%
         display: flex
-        padding: .5rem 0
+        padding: .5rem
+        border-radius: .5rem
+        margin-top: .5rem
+        background: var(--console-screen)
 
         &__wrapper
             width: 100%

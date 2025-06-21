@@ -33,92 +33,6 @@ span
   font-size: inherit
   line-height: inherit
 
-:root
-  --font-size: 24px
-  --console-padding: 16px
-  --console-fontSize: 16px
-  --page-padding: 32px
-
-:root[theme='default']
-  --console-bg: url('./src/images/console-default.jpg')
-  --console-text: #ff1892
-  --console-link: #7dfbfa
-  --console-linr-hover: #c7fffc
-  --console-error: #ff4747
-  --console-success: #47ff5f
-  --console-accent: #f8d225
-  --console-scroll: #f8d225
-  --console-additional: #7dfbfa
-  --console-utility: #855cc4
-  --console-main-gradient-1: #fff0f5
-  --console-main-gradient-2: #ffbdd3
-  --console-main-gradient-3: #ff8ab1
-  --console-main-gradient-4: #ff578f
-  --console-main-gradient-5: #ff246d
-  --console-main-gradient-6: #f00050
-  --console-additional-gradient-1: #fff0f5
-  --console-additional-gradient-2: #ffbdd3
-  --console-additional-gradient-3: #ff8ab1
-  --console-additional-gradient-4: #ff578f
-  --console-additional-gradient-5: #ff246d
-  --console-additional-gradient-6: #f00050
-
-:root[theme='night']
-  --console-bg: url('./src/images/console-night.jpg')
-  --console-text: #c2bfff
-  --console-link: #7dfbfa
-  --console-link-hover: #c7fffc
-  --console-error: #ff4781
-  --console-success: #47ffce
-  --console-accent: #4eb8ff
-  --console-scroll: #4eb8ff
-  --console-additional: #855cc4
-  --console-utility: #9955ff
-  --console-main-gradient-1: #f0f8ff
-  --console-main-gradient-2: #bde3ff
-  --console-main-gradient-3: #8ad0ff
-  --console-main-gradient-4: #57b6ff
-  --console-main-gradient-5: #24a4ff
-  --console-main-gradient-6: #005cf0
-  --console-additional-gradient-1: #fff0f5
-  --console-additional-gradient-2: #ffbdd3
-  --console-additional-gradient-3: #ff8ab1
-  --console-additional-gradient-4: #ff578f
-  --console-additional-gradient-5: #ff246d
-  --console-additional-gradient-6: #f00050
-
-:root[theme='day']
-  --console-bg: url('./src/images/console-day.jpg')
-  --console-text: #222222
-  --console-link: #7dfbfa
-  --console-link-hover: #c7fffc
-  --console-error: #ff2929
-  --console-success: #33ff00
-  --console-accent: #FAD9C8
-  --console-scroll: #FAD9C8
-  --console-additional: #717171
-  --console-main-gradient-1: #e8e8e8
-  --console-main-gradient-2: #c4c4c4
-  --console-main-gradient-3: #939292
-  --console-main-gradient-4: #686868
-  --console-main-gradient-5: #2b2b2b
-  --console-main-gradient-6: #000000
-  --console-additional-gradient-1: #e8e8e8
-  --console-additional-gradient-2: #c4c4c4
-  --console-additional-gradient-3: #939292
-  --console-additional-gradient-4: #686868
-  --console-additional-gradient-5: #2b2b2b
-  --console-additional-gradient-6: #000000
-
-@media (max-width: 768px)
-  :root
-    --console-fontSize: 12px
-    --font-size: 18px
-
-@media (max-width: 425px)
-  :root
-    --console-fontSize: 10px
-
 html
   font-size: var(--font-size)
 
@@ -134,7 +48,3 @@ body
   width: 100%
   height: 100vh
   background: center/cover no-repeat var(--app-bg)
-
-#popups-root
-  font-size: var(--console-fontSize)
-  font-family: monospace

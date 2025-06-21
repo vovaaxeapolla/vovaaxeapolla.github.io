@@ -1,14 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 import React from 'react';
 
-import { LineType } from '@src/types';
-
 export default class LineData {
-  public type: LineType;
+  public type: string;
   public children: string | JSX.Element | undefined;
   public props: unknown;
 
-  constructor(type: LineType, children?: string | JSX.Element, props?: unknown) {
+  constructor(type: string, children?: string | JSX.Element, props?: unknown) {
     makeAutoObservable(this);
     this.children = children;
     this.type = type;
@@ -32,7 +30,7 @@ export default class LineData {
   static ParseLines = (tsx: JSX.Element) => {
     let tsxArray = [];
 
-    if (!tsx) return [new LineData(LineType.ERROR, 'Передан пустой jsx')];
+    if (!tsx) return [new LineData('error', 'Передан пустой jsx')];
 
     if (tsx.type === React.Fragment || tsx.type === React.Suspense) {
       if (tsx.props.children) {
@@ -42,28 +40,28 @@ export default class LineData {
           tsxArray = tsx.props.children;
         }
       } else {
-        return [new LineData(LineType.ERROR, 'Передан пустой jsx')];
+        return [new LineData('error', 'Передан пустой jsx')];
       }
     } else {
-      return [new LineData(LineType.ERROR, 'Передан не jsx')];
+      return [new LineData('error', 'Передан не jsx')];
     }
 
     const lines: LineData[] = tsxArray.map((element: JSX.Element) => {
       switch (element.type) {
         case 'br':
-          return new LineData(LineType.SPACE);
+          return new LineData('space');
 
         case 'span':
-          return new LineData(LineType.TEXT, React.createElement('span', { className: element.props.className }, element.props.children));
+          return new LineData('text', React.createElement('span', { className: element.props.className }, element.props.children));
 
         case 'break':
-          return new LineData(LineType.BREAK, element.props.children, element.props);
+          return new LineData('break', element.props.children, element.props);
 
         case 'Suspense':
-          return new LineData(LineType.TEXT, element);
+          return new LineData('text', element);
 
         default:
-          return new LineData(LineType.TEXT, element);
+          return new LineData('text', element);
       }
     });
 

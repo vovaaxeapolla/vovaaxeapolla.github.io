@@ -5,7 +5,7 @@ import { useLocation } from 'react-router';
 import { ConsoleInput, ConsoleScreen } from '@components';
 import LineData from '@console/Line/LineData';
 import { TextCollection } from '@src/console/constants/TextCollection';
-import { loadingAnim } from '@src/functions';
+import { loadingAnim } from '@src/utils';
 import { LinesStore, ConsoleStore } from '@src/stores';
 
 import '@styles/Console.sass';
