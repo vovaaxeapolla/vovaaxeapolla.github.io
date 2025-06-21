@@ -2,7 +2,6 @@ import { makeAutoObservable } from 'mobx';
 import { Dispatch, RefObject, SetStateAction } from 'react';
 
 import LineData from '@console/Line/LineData';
-import { CLIParser} from '../console/parser/CLIParser';
 import { loadingAnim } from '@src/utils';
 import { LinesStore } from '@src/stores';
 
@@ -27,6 +26,7 @@ export class ConsoleStore {
 
   private async do(value: string, animated?: boolean) {
     const newLines = [];
+    const { CLIParser } = await import('../console/parser/CLIParser');
     const ConsoleParser = new CLIParser(this);
 
     try {
