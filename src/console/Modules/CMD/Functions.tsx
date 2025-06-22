@@ -2,59 +2,32 @@ import LineData from '../../Line/LineData';
 import { ICommand, IModule } from '../Modules';
 
 import MathParser from './MathParser';
-import LinkedList from './LinkedList';
 
 const CMDFunctions: IModule = {
-  trie: {
-    fn: async () => {
-      const output: string[] = [];
-
-      return new LineData('text', 'Not implemented');
-    },
+  whoami: {
+    fn: async () => new LineData('text', 'Not implemented'),
     description: 'Not implemented',
     example: 'Not implemented',
     isExecutable: false,
   },
-  whoami: {
-    fn: async () => {},
-    description: 'Калькулятор',
-    example: 'calc "1+2*3/4^5sqrt(6)"',
-    isExecutable: false,
-  },
-  pwd: {
-    fn: async () => {},
-    description: 'Калькулятор',
-    example: 'calc "1+2*3/4^5sqrt(6)"',
-    isExecutable: false,
-  },
-  cd: {
-    fn: async () => {},
-    description: 'Калькулятор',
-    example: 'calc "1+2*3/4^5sqrt(6)"',
-    isExecutable: false,
-  },
   calc: {
-    fn: async ({ args }: ICommand) => {
-      const Parser = new MathParser();
+    fn: async ({ args, flags }: ICommand) => {
+      const mathParser = new MathParser();
+
+      if (flags['-t']) {
+        const tokens = mathParser.tokenize(args[0])
+
+        return new LineData('text', String(tokens.map((token) => `${token.text} | ${token.type.name}`).join('\n')));
+      }
 
       if (args) {
-        const result = Parser.start(args[0]);
+        const result = mathParser.start(args[0]);
 
         return new LineData('text', String(result));
       }
     },
     description: 'Калькулятор',
     example: 'calc "1+2*3/4^5sqrt(6)"',
-    isExecutable: false,
-  },
-  test: {
-    fn: async () => {
-      const list = LinkedList.fromArray([1, 2, 3, 4, 5]);
-
-      return new LineData('text', list?.toString());
-    },
-    description: 'test',
-    example: 'test',
     isExecutable: false,
   },
 };

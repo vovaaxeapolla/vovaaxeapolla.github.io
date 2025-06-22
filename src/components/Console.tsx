@@ -8,7 +8,7 @@ import { TextCollection } from '@src/console/constants/TextCollection';
 import { loadingAnim } from '@src/utils';
 import { LinesStore, ConsoleStore } from '@src/stores';
 
-import '@styles/Console.sass';
+import '@components/Console.sass';
 
 export const Console = observer(() => {
   const consoleRef = useRef<HTMLDivElement>(null);

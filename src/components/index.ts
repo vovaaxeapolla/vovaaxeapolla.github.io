@@ -1,4 +1,4 @@
-export * from '@components/Console';
+export * from '@src/components/Console';
 export * from '@components/ConsoleInput';
 export * from '@components/ConsoleScreen';
 export * from '@components/Hints';

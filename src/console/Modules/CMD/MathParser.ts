@@ -108,6 +108,9 @@ export default class MathParser {
                 token = this.tokensList[this.pointer].type.name;
             }
             switch (token) {
+                case this.TypesList.FUNCTION.name:
+                    value *= this.func();
+                    break;
                 case this.TypesList.LPARENTHESIS.name:
                     value *= this.factor();
                     break;

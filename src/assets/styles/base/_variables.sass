@@ -40,3 +40,113 @@
 @media (max-width: 425px)
     :root
         --console-fontSize: 10px
+
+$cyber-green: #0f0
+$cyber-pink: #ff2a6d
+$cyber-blue: #00f7ff
+$cyber-purple: #d300c5
+$cyber-yellow: #ffe700
+$cyber-white: #f0f0f0
+
+=cyber-text($color, $glow-color: rgba(255,255,255,0.8))
+    color: $color
+    text-shadow: 0 0 5px $color, 0 0 10px $glow-color
+    position: relative
+
+=cyber-flicker
+    animation: flicker 3s infinite alternate
+@keyframes flicker
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100%
+        opacity: 1
+        text-shadow: 0 0 5px currentColor
+    20%, 24%, 55%
+        opacity: 0.6
+        text-shadow: none
+
+.terminal-command
+    +cyber-text($cyber-green)
+    font-weight: bold
+    letter-spacing: 1px
+
+.terminal-flag
+    +cyber-text($cyber-pink)
+    +cyber-flicker
+    font-style: italic
+
+.terminal-single-quoted
+    text-shadow: 0 0 5px $cyber-yellow, 0 0 10px rgba($cyber-yellow, 0.8), 0 0 20px rgba(darken($cyber-yellow, 20%), 0.6), 0 0 40px rgba(darken($cyber-yellow, 30%), 0.4), 0 0 60px rgba(darken($cyber-yellow, 40%), 0.2)
+
+.terminal-double-quoted
+    +cyber-text($cyber-blue)
+    text-shadow: 0 0 5px $cyber-blue, 0 0 10px rgba($cyber-blue, 0.5), 0 0 20px rgba($cyber-blue, 0.3)
+
+.terminal-escaped
+    +cyber-text($cyber-purple)
+    +cyber-flicker
+    &::after
+        background: linear-gradient(90deg, transparent, $cyber-purple, $cyber-blue, transparent)
+
+.terminal-arg
+    color: $cyber-white
+    text-shadow: 0 0 2px $cyber-white
+    position: relative
+
+@keyframes scanline
+    0%
+        top: 100%
+    100%
+        top: -100%
+
+.dyer-link
+    color: var(--console-link)
+
+.dyer-utility
+    color: var(--console-utility)
+
+.dyer-additional
+    color: var(--console-additional)
+
+.dyer-error
+    color: var(--console-error)
+
+.dyer-success
+    color: var(--console-success)
+
+.dyer-accent
+    color: var(--console-accent)
+
+.dyer-main-gradient-1
+    color: var(--console-main-gradient-1)
+
+.dyer-main-gradient-2
+    color: var(--console-main-gradient-2)
+
+.dyer-main-gradient-3
+    color: var(--console-main-gradient-3)
+
+.dyer-main-gradient-4
+    color: var(--console-main-gradient-4)
+
+.dyer-main-gradient-5
+    color: var(--console-main-gradient-5)
+
+.dyer-main-gradient-6
+    color: var(--console-main-gradient-6)
+
+.dyer-additional-gradient-1
+    color: var(--console-main-gradient-1)
+
+.dyer-additional-gradient-2
+    color: var(--console-main-gradient-2)
+
+.dyer-additional-gradient-3
+    color: var(--console-main-gradient-3)
+
+.dyer-additional-gradient-4
+    color: var(--console-main-gradient-4)
+
+.dyer-additional-gradient-5
+    color: var(--console-main-gradient-5)
+
+.dyer-additional-gradient-6
+    color: var(--console-main-gradient-6)
