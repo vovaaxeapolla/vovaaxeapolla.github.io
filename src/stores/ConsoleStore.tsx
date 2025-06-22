@@ -4,6 +4,7 @@ import { Dispatch, RefObject, SetStateAction } from 'react';
 import LineData from '@console/Line/LineData';
 import { loadingAnim } from '@src/utils';
 import { LinesStore } from '@src/stores';
+import { CLIParser } from '@src/console/parser/CLIParser';
 
 export class ConsoleStore {
   linesStore: LinesStore;
@@ -17,20 +18,20 @@ export class ConsoleStore {
   lastCommand = '';
   currentDirectory = '/';
   user = 'root';
+  parser;
 
   constructor(linesStore: LinesStore, inputLine: RefObject<HTMLInputElement>) {
     makeAutoObservable(this);
     this.linesStore = linesStore;
     this.inputLine = inputLine;
+    this.parser = new CLIParser(this)
   }
 
   private async do(value: string, animated?: boolean) {
     const newLines = [];
-    const { CLIParser } = await import('../console/parser/CLIParser');
-    const ConsoleParser = new CLIParser(this);
 
     try {
-      const p = await ConsoleParser.start(value);
+      const p = await this.parser.start(value);
 
       if (p) {
         if (Array.isArray(p)) {
