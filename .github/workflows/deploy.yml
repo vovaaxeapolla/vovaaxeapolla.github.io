@@ -21,6 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
@@ -31,14 +32,15 @@ jobs:
       - name: Verify build output
         run: |
           ls -la dist/
-          [ -f dist/index.html ] || exit 1
+          [ -f dist/index.html ] || { echo "Error: Missing index.html"; exit 1; }
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: 'dist/'
-          retention-days: 1
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-        timeout-minutes: 5
+      - name: Direct Deploy (Bypass Artifact System)
+        run: |
+          cd dist
+          git init
+          git checkout -b gh-pages
+          git add -A
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git commit -m "Deploy $(date +%Y-%m-%d_%H-%M-%S)"
+          git push -f https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git gh-pages
