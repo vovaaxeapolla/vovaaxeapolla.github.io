@@ -1,4 +1,3 @@
-import '@styles/App.sass';
 import { observer } from 'mobx-react-lite';
 
 import { Console } from '@components';

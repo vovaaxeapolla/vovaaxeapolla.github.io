@@ -5,6 +5,7 @@ import LineData from '@console/Line/LineData';
 import { loadingAnim } from '@src/utils';
 import { LinesStore } from '@src/stores';
 import { CLIParser } from '@src/console/Parser/CLIParser';
+import highlightSyntax from '@src/modules/utils/highlightSyntaxToJSX';
 
 export class ConsoleStore {
   linesStore: LinesStore;
@@ -60,7 +61,7 @@ export class ConsoleStore {
         (
           <>
             <span>{'Entered -> '}</span>
-            {value}
+            {highlightSyntax(value)}
           </>
         )
       )
