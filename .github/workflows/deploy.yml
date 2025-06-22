@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # Explicitly use newer runner image
     permissions:
       contents: write
       pages: write
@@ -17,24 +17,31 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Clean workspace
+        run: rm -rf node_modules/ dist/  # Ensure clean build environment
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
+          always-auth: false  # Disable any legacy auth
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --prefer-offline  # Clean install
 
       - name: Build production app
         run: npm run build
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload Artifact (Modern)
+        uses: actions/upload-artifact@v4  # Explicitly use v4
         with:
-          path: 'dist/'
+          name: deployment
+          path: dist/
           retention-days: 1
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
-        timeout-minutes: 5
+        with:
+          artifact: deployment
+          token: ${{ secrets.GITHUB_TOKEN }}
