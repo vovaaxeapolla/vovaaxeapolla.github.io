@@ -10,14 +10,5 @@ export const TextCollection = {
       <span className="dyer-main-gradient-5"> | |___| |__| | |\  |____) | |__| | |____| |____ </span>
       <span className="dyer-main-gradient-6">  \_____\____/|_| \_|_____/ \____/|______|______|</span>
       <br></br>
-    </>,
-  ABOUT:
-    <>
-      <break></break>
-      <br></br>
-      <span className="dyer-additional">Привет, добро пожаловать в консоль.</span>
-      <span className="dyer-additional">Подпишитесь на нас <a href="https://vk.com" target="blank" className="dyer-link link">VK</a>.</span>
-      <br></br>
-      <break></break>
-    </>,
+    </>
 };

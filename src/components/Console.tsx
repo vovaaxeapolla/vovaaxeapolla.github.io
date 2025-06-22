@@ -25,7 +25,6 @@ export const Console = observer(() => {
     if (location.pathname.slice(1) === '') {
       loadingAnim([
         ...LineData.ParseLines(TextCollection.TITLE),
-        ...LineData.ParseLines(TextCollection.ABOUT),
       ], linesStore.writeln.bind(linesStore));
     } else { consoleStore.doCommand(decodeURIComponent(location.pathname.slice(1))); }
   }, [linesStore]);
