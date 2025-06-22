@@ -1,7 +1,7 @@
 import LineData from '@console/Line/LineData';
 import { IFunction } from '@console/Modules/Modules';
 import { ConsoleStore } from '@src/stores';
-import TerminalParser, { Token } from './TerminalParser';
+import TerminalParser, { Token } from '@console/Parser/TerminalParser';
 
 import Modules from '@console/Modules/Modules';
 

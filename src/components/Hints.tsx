@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { useRef, useState, useEffect } from 'react';
 
 import { IFunction } from '@console/Modules/Modules';
-import { CLIFunctions } from '../console/parser/CLIParser';
+import { CLIFunctions } from '@console/Parser/CLIParser';
 import { ConsoleStore } from '@src/stores';
 
 interface IHintsProps {

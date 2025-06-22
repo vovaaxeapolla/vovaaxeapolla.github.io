@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import React, { useState, useEffect } from 'react';
 
 import { Hints } from '@components';
-import { CLIFunctions } from '@console/parser/CLIParser';
+import { CLIFunctions } from '@console/Parser/CLIParser';
 import { ConsoleStore } from '@src/stores';
 
 interface IConsoleInputProps {
@@ -76,7 +76,7 @@ export const ConsoleInput: React.FC<IConsoleInputProps> = observer(
         if (
           consoleStore.history.previous.length > 0 &&
           consoleStore.history.current + 1 <
-            consoleStore.history.previous.length
+          consoleStore.history.previous.length
         ) {
           consoleStore.setHistoryCurrent(consoleStore.history.current + 1);
           setInputValue(

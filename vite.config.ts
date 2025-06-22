@@ -24,9 +24,6 @@ export default defineConfig({
       { find: '@src', replacement: path.resolve(__dirname, 'src') },
       { find: '@console', replacement: path.resolve(__dirname, 'src/console') },
       { find: '@components', replacement: path.resolve(__dirname, 'src/components') },
-      {
-        find: '@console/parser', replacement: path.resolve(__dirname, 'src/console/parser')
-      },
     ],
   },
 

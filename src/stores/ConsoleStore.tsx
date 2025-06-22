@@ -4,7 +4,7 @@ import { Dispatch, RefObject, SetStateAction } from 'react';
 import LineData from '@console/Line/LineData';
 import { loadingAnim } from '@src/utils';
 import { LinesStore } from '@src/stores';
-import { CLIParser } from '@src/console/parser/CLIParser';
+import { CLIParser } from '@src/console/Parser/CLIParser';
 
 export class ConsoleStore {
   linesStore: LinesStore;

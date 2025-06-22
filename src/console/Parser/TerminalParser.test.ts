@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import TerminalParser from './TerminalParser';
+import TerminalParser from '@console/Parser/TerminalParser';
 
 describe('TerminalParser', () => {
     describe('TerminalParser.tokenize() additional tests', () => {
