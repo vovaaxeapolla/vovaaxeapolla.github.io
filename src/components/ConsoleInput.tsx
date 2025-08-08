@@ -22,7 +22,7 @@ export const ConsoleInput: React.FC<IConsoleInputProps> = observer(
     consoleStore.inputState = [inputValue, setInputValue];
 
     useEffect(() => {
-      const matches = [];
+      const matches:string[] = [];
 
       for (const i in CLIFunctions) {
         if (i.startsWith(inputValue) && inputValue !== '') matches.push(i);
@@ -89,10 +89,10 @@ export const ConsoleInput: React.FC<IConsoleInputProps> = observer(
     return (
       <div className="console__inputLine">
         <span
-          className="unselectable"
+          className="unselectable console__prompt"
           style={{ display: 'flex', alignItems: 'center' }}
         >
-          {'>>'}
+          {'❯'}
         </span>
         <div className="console__inputLine__wrapper">
           {type !== 'password' && (

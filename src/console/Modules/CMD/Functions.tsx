@@ -1,3 +1,4 @@
+import highlightSyntaxToJSX from '@src/modules/utils/highlightSyntaxToJSX';
 import LineData from '../../Line/LineData';
 import { ICommand, IModule } from '../Modules';
 
@@ -5,7 +6,9 @@ import MathParser from './MathParser';
 
 const CMDFunctions: IModule = {
   whoami: {
-    fn: async () => new LineData('text', 'Not implemented'),
+    fn: async () => {
+      return new LineData('text', highlightSyntaxToJSX('help -a --abc-def'));
+    },
     description: 'Not implemented',
     example: 'Not implemented',
     isExecutable: false,

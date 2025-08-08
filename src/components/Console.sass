@@ -8,16 +8,31 @@
     font-family: monospace
     padding: var(--console-padding)
 
+    &::before
+        content: ''
+        position: absolute
+        inset: 0
+        background-image: linear-gradient(var(--cli-grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--cli-grid-color) 1px, transparent 1px)
+        background-size: 28px 28px
+        mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 70%)
+        pointer-events: none
+
     &__container
         height: calc( 100% - 2rem )
+        display: flex
+        flex-direction: column
+        gap: .5rem
 
     &__screen
-        padding: .5rem
-        border-radius: .5rem
+        padding: .75rem
+        border-radius: .75rem
         height: 100%
         overflow-y: scroll
         background: var(--console-screen)
         width: 100%
+        border: 1px solid var(--cli-border-strong)
+        box-shadow: var(--cli-glow)
+        backdrop-filter: blur(8px) saturate(120%)
 
         &::-webkit-scrollbar
             width: 6px
@@ -33,10 +48,16 @@
     &__inputLine
         width: 100%
         display: flex
-        padding: .5rem
-        border-radius: .5rem
+        align-items: center
+        gap: .5rem
+        padding: .375rem .75rem
+        border-radius: .75rem
         margin-top: .5rem
         background: var(--console-screen)
+        border: 1px solid var(--cli-border-strong)
+        box-shadow: var(--cli-glow)
+        backdrop-filter: blur(8px) saturate(120%)
+        min-height: calc(var(--console-fontSize) * 1.6)
 
         &__wrapper
             width: 100%
@@ -44,9 +65,8 @@
 
     &__input
         display: inline-block
-        padding-left: .75rem
-        height: var(--console-fontSize)
-        line-height: var(--console-fontSize)
+        padding: 2px 0 3px .25rem
+        line-height: 1.35
         width: 100%
         outline: none
         border: none
@@ -56,9 +76,13 @@
         font-size: var(--console-fontSize)
         font-family: inherit
         text-align: justify
-        cursor: default
+        cursor: text
         position: relative
         z-index: 1
+        caret-color: var(--console-caret)
+        vertical-align: middle
+        -webkit-appearance: none
+        appearance: none
 
     &__canvas
         position: absolute
@@ -67,12 +91,13 @@
     &__hints
         position: absolute
         left: 0rem
-        backdrop-filter: blur(3px)
+        backdrop-filter: blur(6px) saturate(140%)
         padding: .5rem
         color: var(--console-accent-color)
-        background: rgba(0, 0, 0, 0.5)
+        background: rgba(10, 16, 32, 0.65)
+        border: 1px solid var(--cli-border-strong)
         border-radius: .5rem
-        box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2)
+        box-shadow: var(--cli-glow)
         z-index: 0
 
         &-top
@@ -94,8 +119,21 @@
             cursor: pointer
 
             &:hover
-                background: rgba(255,255,255,.1)
+                background: rgba(255,255,255,.08)
 
             &-selected
-                background: rgba(255,255,255,.2)
+                background: rgba(255,255,255,.16)
                 font-weight: bold
+
+    &__prompt
+        font-weight: 700
+        background: linear-gradient(90deg, var(--cli-accent-from), var(--cli-accent-to))
+        -webkit-background-clip: text
+        background-clip: text
+        color: transparent
+        display: inline-flex
+        align-items: center
+        justify-content: center
+        width: calc(var(--console-fontSize) + 4px)
+        line-height: 1
+        text-shadow: 0 0 18px rgba(0, 212, 255, 0.25)
